@@ -1,4 +1,4 @@
-from Tkinter import Tk, Canvas
+from tkinter import Tk, Canvas
 
 
 class GUI(object):

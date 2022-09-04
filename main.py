@@ -2,11 +2,11 @@ import argparse
 
 from entities.carrier import Carrier
 from entities.explorer import Explorer
-from gui import GUI
 from entities.mars_base import MarsBase
 from entities.obstacle import Obstacle
 from entities.rock import Rock
 from entities.world import World
+from gui import GUI
 
 
 def init_entities(num_obstacles, num_rocks, num_explorers, num_carriers):
