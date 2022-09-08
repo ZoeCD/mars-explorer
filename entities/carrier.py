@@ -25,16 +25,7 @@ class Carrier(Explorer):
 
     def _tick(self):
         # If all rocks are collected, take what it has to the base.
-        if self._all_rocks_collected():
-            if self._drop_available():
-                for _ in range(self.rocks):
-                    self.world.rock_collected()
-                    self.rocks -= 1
-                return
-            self.dx, self.dy = normalize(self.world.mars_base.x - self.x,
-                                         self.world.mars_base.y - self.y)
-
-        else:
+        if not self._all_rocks_collected():
             # Pick up from nearby explorer.
             explorer = self._pickup_available()
             if explorer:
@@ -64,6 +55,14 @@ class Carrier(Explorer):
 
                 self.dx, self.dy = normalize(self.en_route_to.point.x - self.x,
                                              self.en_route_to.point.y - self.y)
+        else:
+            if self._drop_available():
+                for _ in range(self.rocks):
+                    self.world.rock_collected()
+                    self.rocks -= 1
+                return
+            self.dx, self.dy = normalize(self.world.mars_base.x - self.x,
+                                         self.world.mars_base.y - self.y)
 
         # Keep walkin'.
         while not self._can_move():

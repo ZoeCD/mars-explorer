@@ -62,15 +62,15 @@ class Explorer(DrawableEntity):
                 self.world.rock_collected()
                 return
 
-            # Call for a carrier to pick up.
-            self._broadcast_come_message()
-
             # Head towards base if carriers not available.
             if not self.world.carriers:
                 self.dx, self.dy = normalize(self.world.mars_base.x - self.x,
                                              self.world.mars_base.y - self.y)
             else:
+                # Call for a carrier to pick up.
+                self._broadcast_come_message()
                 return
+
         else:
             # Pick up.
             rock = self._rock_available()
